@@ -9,13 +9,21 @@
     <style>
         .fullscreen {
             position: fixed;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100vw;
-            height: 100vh;
-            border-radius: 0;
+            height: 100svh;
             font-size: 40px;
             z-index: 999;
+        }
+
+        @media (max-width: 480px) {
+            .fullscreen {
+                position: static;
+                width: 100%;
+                height: auto;
+                font-size: 22px;
+                transform: scale(1.1);
+            }
         }
 
         body {
@@ -245,6 +253,17 @@
             }
         }
 
+        @media (max-width: 480px) {
+            body {
+                min-height: 100svh;
+                /* clave */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+        }
+
 
         .gallery-img {
             transition:
@@ -360,6 +379,13 @@
                 transform: scale(1.05);
             }
         }
+
+        .mobile-dominant {
+            width: 100% !important;
+            font-size: 24px !important;
+            padding: 18px !important;
+            transform: scale(1.15) !important;
+        }
     </style>
 </head>
 
@@ -380,7 +406,7 @@
         </div>
 
         <!-- IMAGEN INFERIOR -->
-        <div class="image-box" style="margin-top:30px; margin-left: 130px ;" id="finalImageBox">
+        <div class="image-box" style="margin-top:30px; margin-left: 130px ; display: none;" id="finalImageBox">
             <img src="gatito_con_flor.jpg" alt="feliz">
         </div>
 
@@ -402,29 +428,34 @@
             const yesBtn = document.getElementById("yesBtn");
             const noBtn = document.getElementById("noBtn");
 
-            // Cambiar imagen
             img.src = images[noCount % images.length];
 
-            // Crecer botón Aceptar
-            const yesScale = 1 + noCount * 0.25;
+            const isMobile = window.innerWidth <= 480;
+
+            // Botón Aceptar (crece pero con límite)
+            const yesScale = Math.min(1 + noCount * 0.2, isMobile ? 1.8 : 3);
             yesBtn.style.transform = `scale(${yesScale})`;
             yesBtn.innerText = "Porfi 🥺";
 
-            // Agrandar y alejar botón Rechazar
-            const noScale = 1 + noCount * 0.2;
-            const moveX = Math.random() * 300 - 150;
-            const moveY = Math.random() * 300 - 150;
+            if (!isMobile) {
+                // DESKTOP: se mueve
+                const moveX = Math.random() * 300 - 150;
+                const moveY = Math.random() * 300 - 150;
 
-            noBtn.style.transform = `
-            scale(${noScale})
+                noBtn.style.transform = `
+            scale(${1 + noCount * 0.2})
             translate(${moveX}px, ${moveY}px)
         `;
-
-            // Cuando aceptar ya es enorme → pantalla completa
-            if (yesScale >= 3) {
-                yesBtn.classList.add("fullscreen");
-                yesBtn.innerText = "DI QUE SÍ 💖";
+            } else {
+                // MOBILE: solo se achica
+                const noScale = Math.max(1 - noCount * 0.1, 0.6);
+                noBtn.style.transform = `scale(${noScale})`;
             }
+
+            if (yesScale >= (isMobile ? 1.8 : 3)) {
+                activateFullscreen(isMobile);
+            }
+
         }
 
         function accept() {
@@ -490,6 +521,19 @@ Te adoro mi esposhita linda, eres lo mejor que ha pasado en mi vida, gracias por
             envelope.style.animation = "none"; // Detener wobble
             letter.style.display = "block";
         }
+
+        function activateFullscreen(isMobile) {
+            const yesBtn = document.getElementById("yesBtn");
+
+            if (isMobile) {
+                yesBtn.classList.add("mobile-dominant");
+                yesBtn.innerText = "DI QUE SÍ 💖";
+            } else {
+                yesBtn.classList.add("fullscreen");
+                yesBtn.innerText = "DI QUE SÍ 💖";
+            }
+        }
+
     </script>
 
 
