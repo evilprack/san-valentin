@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>¿Quieres ser mi San Valentín?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            border-radius: 0;
+            font-size: 40px;
+            z-index: 999;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-box {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        #finalImageBox {
+            width: 40%;
+            height: 150px;
+        }
+
+        h1 {
+            color: #e91e63;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        button {
+            border: none;
+            border-radius: 30px;
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #yesBtn {
+            background-color: #e91e63;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #b0b0b0;
+            color: white;
+        }
+
+        .accepted {
+            color: #e91e63;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .triptych {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .panel {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+/* CARTA MEJORADA */
+.envelope {
+    width: 140px;
+    height: 95px;
+    background: #ffffff;
+    border: 2px solid #e91e63;
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    animation: wobble 2s infinite ease-in-out;
+}
+
+/* TAPA DEL SOBRE */
+.envelope::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 70px solid transparent;
+    border-right: 70px solid transparent;
+    border-bottom: 50px solid #f8bbd0;
+}
+
+/* ICONO DE CORAZÓN */
+.envelope::after {
+    content: "💖";
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 28px;
+}
+
+/* ANIMACIÓN POKEBOLA */
+@keyframes wobble {
+    0%   { transform: rotate(0deg); }
+    15%  { transform: rotate(-5deg); }
+    30%  { transform: rotate(5deg); }
+    45%  { transform: rotate(-3deg); }
+    60%  { transform: rotate(3deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* CARTA ABIERTA */
+.letter {
+    display: none;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 80%;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    animation: openLetter 0.6s ease forwards;
+}
+
+        @keyframes openLetter {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* GALERÍA */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+
+
+
+
+        .fade-out {
+            animation: fadeOut 0.8s forwards ease;
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            to {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(1.05);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+
+        .gallery-img {
+    transition: 
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        filter 0.4s ease;
+    cursor: pointer;
+}
+
+/* EFECTO HOVER */
+.gallery-img:hover {
+    transform: 
+        scale(1.12)
+        rotate(1.5deg)
+        translateY(-6px);
+    box-shadow: 0 15px 30px rgba(139, 19, 59, 0.35);
+    filter: brightness(1.1);
+}
+
+/* MEDIA QUERIES PARA RESPONSIVE */
+/* =========================
+   RESPONSIVE MOBILE (iPhone 11)
+   ========================= */
+@media (max-width: 480px) {
+
+    body {
+        height: auto;
+        padding: 20px 0;
+    }
+
+    .card {
+        width: 95%;
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .image-box {
+        height: 180px;
+    }
+
+    #finalImageBox {
+        width: 60%;
+        height: 120px;
+        margin: 20px auto 0; /* CENTRADO */
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    button {
+        width: 100%;
+        font-size: 18px;
+        padding: 14px;
+    }
+
+    /* BOTÓN FULLSCREEN */
+    .fullscreen {
+        font-size: 28px;
+        padding: 20px;
+    }
+
+    /* ===== PANTALLA DESPUÉS DE ACEPTAR ===== */
+
+    .triptych {
+        grid-template-columns: 1fr; /* columnas → filas */
+        height: auto;
+        padding: 20px 0;
+    }
+
+    .panel {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .panel h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    iframe {
+        width: 100%;
+        height: 160px;
+    }
+
+    .envelope {
+        width: 120px;
+        height: 85px;
+    }
+
+    .letter {
+        max-width: 95%;
+        font-size: 15px;
+    }
+
+    /* GALERÍA */
+    .gallery {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .gallery-img {
+        border-radius: 12px;
+    }
+
+    /* Hover en mobile → más suave */
+    .gallery-img:hover {
+        transform: scale(1.05);
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <!-- IMAGEN SUPERIOR ROTATIVA -->
+        <div class="image-box">
+            <img id="mainImage" src="gatito_con_corazon.jpg" alt="imagen">
+        </div>
+
+        <h1 id="question">¿Quieres ser mi San Valentín moshito? 💖</h1>
+
+        <div class="buttons">
+            <button id="yesBtn" onclick="accept()">Aceptar</button>
+            <button id="noBtn" onclick="reject()">Rechazar</button>
+        </div>
+
+        <!-- IMAGEN INFERIOR -->
+        <div class="image-box" style="margin-top:30px; margin-left: 130px ;" id="finalImageBox">
+            <img src="gatito_con_flor.jpg" alt="feliz">
+        </div>
+
+    </div>
+
+    <script>
+        let noCount = 0;
+
+        const images = [
+            "gatito_triste_1.jpg",
+            "gatito_triste_2.jpg",
+            "gatito_triste_potito.jpg"
+        ];
+
+        function reject() {
+            noCount++;
+
+            const img = document.getElementById("mainImage");
+            const yesBtn = document.getElementById("yesBtn");
+            const noBtn = document.getElementById("noBtn");
+
+            // Cambiar imagen
+            img.src = images[noCount % images.length];
+
+            // Crecer botón Aceptar
+            const yesScale = 1 + noCount * 0.25;
+            yesBtn.style.transform = `scale(${yesScale})`;
+            yesBtn.innerText = "Porfi 🥺";
+
+            // Agrandar y alejar botón Rechazar
+            const noScale = 1 + noCount * 0.2;
+            const moveX = Math.random() * 300 - 150;
+            const moveY = Math.random() * 300 - 150;
+
+            noBtn.style.transform = `
+            scale(${noScale})
+            translate(${moveX}px, ${moveY}px)
+        `;
+
+            // Cuando aceptar ya es enorme → pantalla completa
+            if (yesScale >= 3) {
+                yesBtn.classList.add("fullscreen");
+                yesBtn.innerText = "DI QUE SÍ 💖";
+            }
+        }
+
+        function accept() {
+            const card = document.querySelector(".card");
+            card.classList.add("fade-out");
+
+            setTimeout(() => {
+                document.body.innerHTML = `
+        <div class="triptych fade-in">
+
+            <!-- PANEL 1 -->
+            <div class="panel">
+                <h2 style="color:#e91e63;">Siempre me recuerda a ti 🎶</h2>
+                <iframe style="border-radius:12px"
+                    src="https://open.spotify.com/embed/track/64bf8eSjrTxfEDLCXYZE9z"
+                    width="100%" height="152" frameBorder="0"
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+                </iframe>
+                <p>Te amo muchisimo mi amor 💖</p>
+            </div>
+
+            <!-- PANEL 2 -->
+            <div class="panel">
+                <h2 style="color:#e91e63;">Para tu 💌</h2>
+
+                <div class="envelope" onclick="openLetter()"></div>
+
+                <div class="letter" id="letter">
+                    <p>
+                        Desde que llegaste a mi vida, todo tiene más color.
+                        Cada risa tuya, cada momento juntos, se volvió algo
+                        que quiero repetir una y otra vez.
+                        <br><br>
+                        Gracias por existir, por ser tú,
+                        y por decir que sí 💖
+                    </p>
+                </div>
+            </div>
+
+            <!-- PANEL 3 -->
+            <div class="panel">
+                <h2 style="color:#e91e63;">Recuerditos Bomnitos 📸</h2>
+                <div class="gallery">
+                    <img class="gallery-img" src="juntitos.jpeg">
+                    <img class="gallery-img" src="ojitos_juntos.jpeg">
+                    <img class="gallery-img" src="ojitos.jpeg">
+                    <img class="gallery-img" src="beshito.jpeg">
+                </div>
+                <p>Me encantas mucho mi amor, eres el amor de mi vida 🥰</p>
+            </div>
+
+        </div>
+        `;
+            }, 800);
+        }
+
+        function openLetter() {
+            const letter = document.getElementById("letter");
+            const envelope = document.querySelector(".envelope");
+
+            envelope.style.animation = "none"; // Detener wobble
+            letter.style.display = "block";
+        }
+    </script>
+
+
+</body>
+
+</html>
