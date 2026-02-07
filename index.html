@@ -110,62 +110,79 @@
             gap: 15px;
         }
 
-/* CARTA MEJORADA */
-.envelope {
-    width: 140px;
-    height: 95px;
-    background: #ffffff;
-    border: 2px solid #e91e63;
-    border-radius: 8px;
-    position: relative;
-    cursor: pointer;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    animation: wobble 2s infinite ease-in-out;
-}
+        /* CARTA MEJORADA */
+        .envelope {
+            width: 140px;
+            height: 95px;
+            background: #ffffff;
+            border: 2px solid #e91e63;
+            border-radius: 8px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            animation: wobble 2s infinite ease-in-out;
+        }
 
-/* TAPA DEL SOBRE */
-.envelope::before {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: 0;
-    width: 0;
-    height: 0;
-    border-left: 70px solid transparent;
-    border-right: 70px solid transparent;
-    border-bottom: 50px solid #f8bbd0;
-}
+        /* TAPA DEL SOBRE */
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 70px solid transparent;
+            border-right: 70px solid transparent;
+            border-bottom: 50px solid #f8bbd0;
+        }
 
-/* ICONO DE CORAZÓN */
-.envelope::after {
-    content: "💖";
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 28px;
-}
+        /* ICONO DE CORAZÓN */
+        .envelope::after {
+            content: "💖";
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 28px;
+        }
 
-/* ANIMACIÓN POKEBOLA */
-@keyframes wobble {
-    0%   { transform: rotate(0deg); }
-    15%  { transform: rotate(-5deg); }
-    30%  { transform: rotate(5deg); }
-    45%  { transform: rotate(-3deg); }
-    60%  { transform: rotate(3deg); }
-    100% { transform: rotate(0deg); }
-}
+        /* ANIMACIÓN POKEBOLA */
+        @keyframes wobble {
+            0% {
+                transform: rotate(0deg);
+            }
 
-/* CARTA ABIERTA */
-.letter {
-    display: none;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    max-width: 80%;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    animation: openLetter 0.6s ease forwards;
-}
+            15% {
+                transform: rotate(-5deg);
+            }
+
+            30% {
+                transform: rotate(5deg);
+            }
+
+            45% {
+                transform: rotate(-3deg);
+            }
+
+            60% {
+                transform: rotate(3deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        /* CARTA ABIERTA */
+        .letter {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 80%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            animation: openLetter 0.6s ease forwards;
+        }
 
         @keyframes openLetter {
             from {
@@ -230,119 +247,119 @@
 
 
         .gallery-img {
-    transition: 
-        transform 0.4s ease,
-        box-shadow 0.4s ease,
-        filter 0.4s ease;
-    cursor: pointer;
-}
+            transition:
+                transform 0.4s ease,
+                box-shadow 0.4s ease,
+                filter 0.4s ease;
+            cursor: pointer;
+        }
 
-/* EFECTO HOVER */
-.gallery-img:hover {
-    transform: 
-        scale(1.12)
-        rotate(1.5deg)
-        translateY(-6px);
-    box-shadow: 0 15px 30px rgba(139, 19, 59, 0.35);
-    filter: brightness(1.1);
-}
+        /* EFECTO HOVER */
+        .gallery-img:hover {
+            transform:
+                scale(1.12) rotate(1.5deg) translateY(-6px);
+            box-shadow: 0 15px 30px rgba(139, 19, 59, 0.35);
+            filter: brightness(1.1);
+        }
 
-/* MEDIA QUERIES PARA RESPONSIVE */
-/* =========================
+        /* MEDIA QUERIES PARA RESPONSIVE */
+        /* =========================
    RESPONSIVE MOBILE (iPhone 11)
    ========================= */
-@media (max-width: 480px) {
+        @media (max-width: 480px) {
 
-    body {
-        height: auto;
-        padding: 20px 0;
-    }
+            body {
+                height: auto;
+                padding: 20px 0;
+            }
 
-    .card {
-        width: 95%;
-        padding: 20px;
-        border-radius: 16px;
-    }
+            .card {
+                width: 95%;
+                padding: 20px;
+                border-radius: 16px;
+            }
 
-    h1 {
-        font-size: 22px;
-    }
+            h1 {
+                font-size: 22px;
+            }
 
-    .image-box {
-        height: 180px;
-    }
+            .image-box {
+                height: 180px;
+            }
 
-    #finalImageBox {
-        width: 60%;
-        height: 120px;
-        margin: 20px auto 0; /* CENTRADO */
-    }
+            #finalImageBox {
+                width: 60%;
+                height: 120px;
+                margin: 20px auto 0;
+                /* CENTRADO */
+            }
 
-    .buttons {
-        flex-direction: column;
-        gap: 15px;
-    }
+            .buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
 
-    button {
-        width: 100%;
-        font-size: 18px;
-        padding: 14px;
-    }
+            button {
+                width: 100%;
+                font-size: 18px;
+                padding: 14px;
+            }
 
-    /* BOTÓN FULLSCREEN */
-    .fullscreen {
-        font-size: 28px;
-        padding: 20px;
-    }
+            /* BOTÓN FULLSCREEN */
+            .fullscreen {
+                font-size: 28px;
+                padding: 20px;
+            }
 
-    /* ===== PANTALLA DESPUÉS DE ACEPTAR ===== */
+            /* ===== PANTALLA DESPUÉS DE ACEPTAR ===== */
 
-    .triptych {
-        grid-template-columns: 1fr; /* columnas → filas */
-        height: auto;
-        padding: 20px 0;
-    }
+            .triptych {
+                grid-template-columns: 1fr;
+                /* columnas → filas */
+                height: auto;
+                padding: 20px 0;
+            }
 
-    .panel {
-        padding: 20px;
-        gap: 20px;
-    }
+            .panel {
+                padding: 20px;
+                gap: 20px;
+            }
 
-    .panel h2 {
-        font-size: 20px;
-        text-align: center;
-    }
+            .panel h2 {
+                font-size: 20px;
+                text-align: center;
+            }
 
-    iframe {
-        width: 100%;
-        height: 160px;
-    }
+            iframe {
+                width: 100%;
+                height: 160px;
+            }
 
-    .envelope {
-        width: 120px;
-        height: 85px;
-    }
+            .envelope {
+                width: 120px;
+                height: 85px;
+            }
 
-    .letter {
-        max-width: 95%;
-        font-size: 15px;
-    }
+            .letter {
+                max-width: 95%;
+                font-size: 15px;
+            }
 
-    /* GALERÍA */
-    .gallery {
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-    }
+            /* GALERÍA */
+            .gallery {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
 
-    .gallery-img {
-        border-radius: 12px;
-    }
+            .gallery-img {
+                border-radius: 12px;
+            }
 
-    /* Hover en mobile → más suave */
-    .gallery-img:hover {
-        transform: scale(1.05);
-    }
-}
+            /* Hover en mobile → más suave */
+            .gallery-img:hover {
+                transform: scale(1.05);
+            }
+        }
     </style>
 </head>
 
@@ -437,12 +454,14 @@
 
                 <div class="letter" id="letter">
                     <p>
-                        Desde que llegaste a mi vida, todo tiene más color.
-                        Cada risa tuya, cada momento juntos, se volvió algo
-                        que quiero repetir una y otra vez.
-                        <br><br>
-                        Gracias por existir, por ser tú,
-                        y por decir que sí 💖
+                        Desde que llegaste a mi vida, me has hecho muy feliz.
+Tu risa, tu forma de mirarme y cada momento a tu lado se convirtieron en recuerdos que quiero repetir una y otra vez.
+<br><br>
+En estos seis meses hemos vivido cosas mu lindas como caminar juntos, ir a la playa, compartir comidas, dormir abrazaditos, sentir que en lo simple somos felices.
+Gracias por existir, por ser tú, este es nuestro primer San Valentín, y no podría imaginarlo con alguien más.
+Te amo muchísimo 💖 <br><br><br>
+pd:
+Te adoro mi esposhita linda, eres lo mejor que ha pasado en mi vida, gracias por estar con io 😸
                     </p>
                 </div>
             </div>
